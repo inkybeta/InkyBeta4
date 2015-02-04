@@ -1,0 +1,59 @@
+﻿@model InkyBeta.Models.UserModel
+
+@{
+    ViewBag.Title = "Register";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Register</h2>
+@ViewBag.Message
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<fieldset>
+		<legend>Basic information</legend>
+		@Html.LabelFor(model => model.UserName)
+		@Html.TextBoxFor(model => model.UserName, true)
+		@Html.ValidationMessageFor(model => model.UserName)
+		<br/>
+		@Html.LabelFor(model => model.Password)
+		@Html.PasswordFor(model => model.Password, true)
+		@Html.ValidationMessageFor(model => model.Password)
+		<br/>
+		@Html.LabelFor(model => model.ConfirmPassword)
+		@Html.PasswordFor(model => model.ConfirmPassword, true)
+		@Html.ValidationMessageFor(model => model.ConfirmPassword)
+		<br/>
+		@Html.LabelFor(model => model.PasswordHint)
+		@Html.TextBoxFor(model => model.PasswordHint, true)
+		@Html.ValidationMessageFor(model => model.PasswordHint)
+	</fieldset>
+	<fieldset>
+		<legend>Contact Information</legend>
+		@Html.LabelFor(model => model.Email)
+		@Html.TextBoxFor(model => model.Email, true)
+		@Html.ValidationMessageFor(model => model.Email)
+		<br/>
+		@Html.LabelFor(model => model.PhoneNumber)
+		@Html.TextBoxFor(model => model.PhoneNumber, true)
+		@Html.ValidationMessageFor(model => model.PhoneNumber)
+	</fieldset>
+	<fieldset>
+		<legend>Personal Information</legend>
+		@Html.LabelFor(model => model.FirstName)
+		@Html.TextBoxFor(model => model.FirstName)
+		@Html.ValidationMessageFor(model => model.FirstName)
+		<br/>
+		@Html.LabelFor(model => model.MiddleName)
+		@Html.TextBoxFor(model => model.MiddleName, true)
+		@Html.ValidationMessageFor(model => model.MiddleName)
+		<br/>
+		@Html.LabelFor(model => model.LastName)
+		@Html.TextBoxFor(model => model.LastName, true)
+		@Html.ValidationMessageFor(model => model.LastName)
+		<br/>
+		@Html.LabelFor(model => model.Motto)
+		@Html.TextAreaFor(model => model.Motto, true)
+		@Html.ValidationMessageFor(model => model.Motto)
+	</fieldset>
+	<input type="submit" value="Register"/>
+}

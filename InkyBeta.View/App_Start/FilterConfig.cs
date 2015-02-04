@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace InkyBeta4
+namespace InkyBeta
 {
 	public class FilterConfig
 	{
