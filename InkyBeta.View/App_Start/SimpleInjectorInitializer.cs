@@ -6,6 +6,7 @@ using InkyBeta.Core;
 using InkyBeta.Data.DataContext;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.DataProtection;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
@@ -39,6 +40,7 @@ namespace InkyBeta
 
 			WebRequestLifestyle lifestyle = new WebRequestLifestyle(true);
 
+			container.Register(() => new DpapiDataProtectionProvider());
 			container.Register(() => new UserContext(), lifestyle);
 			container.Register(() => new UserStore<User>(container.GetInstance<UserContext>()), lifestyle);
 			container.Register(() => new UserManager<User>(container.GetInstance<UserStore<User>>()), lifestyle);

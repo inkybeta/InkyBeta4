@@ -6,6 +6,8 @@ using InkyBeta.Business.UserManager;
 using InkyBeta.Core;
 using InkyBeta.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace InkyBeta.Controllers
 {
@@ -13,10 +15,14 @@ namespace InkyBeta.Controllers
 	{
 		private readonly UserManager<User> _manager;
 
-		public AccountController(UserManager<User> manager)
+		public AccountController(UserManager<User> manager, DpapiDataProtectionProvider provider)
 		{
 			_manager = manager;
 			_manager.EmailService = new MessageService();
+			_manager.UserTokenProvider = new DataProtectorTokenProvider<User>(provider.Create("InkyBeta"))
+			{
+				TokenLifespan = TimeSpan.FromHours(24)
+			};
 		}
 
 		//
